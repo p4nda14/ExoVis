@@ -12,7 +12,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 
 }
 body {
@@ -20,10 +20,10 @@ body {
      display: flex;
      justify-content: center;
      align-items: center; /* Center vertically */
-     height: 100vh; 
+     height: 100vh;
      margin: 0;
-     background-image: url("https://images.unsplash.com/photo-1626693547273-547ae1803110?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-     
+     <!--background-image: url("https://images.unsplash.com/photo-1626693547273-547ae1803110?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");-->
+
 }
 
 .categories-container {
@@ -52,28 +52,28 @@ border-radius: 5px;
 margin-top: 5px;
 }
 .filter-option {
-margin: 5px 0; 
+margin: 5px 0;
 cursor: pointer; /* Indicate that it is clickable */
 }
 input[type="checkbox"] {
 margin-right: 8px; }
 
-        
+
 button {
     border: none;
     padding: 12px 24px;
     border-radius: 15px;
     font-weight: 600;
-    background-color: rgb(15, 155, 236); 
+    background-color: rgb(15, 155, 236);
     color: #ffffff;
-        
+
     margin: 20 auto;
     display: block;
     transition:all 200ms ease-in-out;
     cursor: pointer;
 }
 
-    
+
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,100&display=swap');
 
     </style>
@@ -148,13 +148,13 @@ button {
 <div>
 
     <br>
-    <button id="submit-bottom" class="button-action">submit</button>
+    <button id="btn" class="button-action">submit</button>
     <p id="response">tyfvhhgf</p>
     <script>
-        document.getElementById('submit-button').addEventListener('click', function(event) {
+        document.getElementById('btn').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the default form submission
 
-           // const data = document.getElementById('data').value; 
+           // const data = document.getElementById('data').value;
            const data ='Hello Wolrd'
 
             // Make a POST request to the Flask server
@@ -174,40 +174,6 @@ button {
                 console.error('Error:', error);
             });
         });
-    </script>
-    <script>
-        async function sendData() {
-            // Collect checked checkbox values
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-            const selectedOptions = Array.from(checkboxes).map(checkbox => checkbox.value);
-    
-            // Prepare JSON data
-            const data = { selectedOptions: selectedOptions };
-    
-            try {
-                const response = await fetch('http://localhost:5000/api/data', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data), // Convert data to JSON string
-                });
-    
-                // Handle the response
-                if (response.ok) {
-                    const result = await response.json();
-                    console.log('Response from server:', result);
-                    alert('Data sent successfully!');
-                } else {
-                    throw new Error('Network response was not ok.');
-                }
-            } catch (error) {
-                console.error('Error sending data:', error);
-                alert('Failed to send data.');
-            }
-        }
-    
-        document.getElementById('submitButton').addEventListener('click', sendData);
     </script>
     </div>
 
