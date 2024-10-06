@@ -1,0 +1,67 @@
+img{ 
+  width: 100%;
+  border-radius: 12px;
+  height: 214px;
+  
+  object-fit: cover;
+}
+
+body {
+    background-image: url("https://img.freepik.com/premium-photo/closeup-view-cluster-stars-night-sky_1362585-3177.jpg?w=1060");
+     
+        font-family: "Protest Strike", sans-serif;
+        font-weight: 400;
+        font-style: oblique;
+      
+    #container {
+        max-width: 600px;
+        margin: 0 auto;
+
+        margin-top: 20vh;
+        background-color: #ff9500;
+        padding: 8px;
+        border-radius: 12px;
+        border: 1px solid #BACDD8;
+    }  
+     .tag{
+        padding: 4px 8px;
+        border: 1px solid #E5EAED;
+
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #788697;
+     }
+     .name {
+        font-size: 24px;
+        font-weight: 600;
+
+        margin-top: 16px;
+     }
+     p {
+        font-size: 14px;
+        color: #7f8c98;
+        line-height: 150%;
+     }
+button {
+border: none;
+padding: 12px 24px;
+border-radius: 30px;
+font-weight: 600;
+background-color: rgb(226, 147, 20); /*this is the actual background*/
+color: #17eaea;
+
+margin: 0 auto;
+display: block;
+transition:all 200ms ease-in-out;
+cursor: pointer;
+
+}
+button:focus, button:hover {
+background-color: rgb(13, 91, 226); /* this is for the focus when your mouse is on the read more but not click on it */
+}
+}
+
+.card_details {
+    padding: 16px 8px 8px;
+}
