@@ -77,8 +77,44 @@
             </label>
         </div>
     </div>
-    <button class="action-bottom">Submit</button>
-    </div>
+    <br>
+    <button id="submit-bottom" class="button-action">submit</button>
+    <p id="response">tyfvhhgf</p>
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+           // const data = document.getElementById('data').value; 
+           const data ='Hello Wolrd'
+
+            // Make a POST request to the Flask server
+            fetch('http://127.0.0.1:5000/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ data: data }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').textContent = 'Response: ' + JSON.stringify(data);
+            })
+
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
+
+Refresh
+
+New tab
+
+
+Share
+
     
 </div>
 
