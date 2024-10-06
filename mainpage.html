@@ -175,6 +175,41 @@ button {
             });
         });
     </script>
+    <script>
+        async function sendData() {
+            // Collect checked checkbox values
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const selectedOptions = Array.from(checkboxes).map(checkbox => checkbox.value);
+    
+            // Prepare JSON data
+            const data = { selectedOptions: selectedOptions };
+    
+            try {
+                const response = await fetch('http://localhost:5000/api/data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data), // Convert data to JSON string
+                });
+    
+                // Handle the response
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Response from server:', result);
+                    alert('Data sent successfully!');
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            } catch (error) {
+                console.error('Error sending data:', error);
+                alert('Failed to send data.');
+            }
+        }
+    
+        document.getElementById('submitButton').addEventListener('click', sendData);
+    </script>
     </div>
+
 </body>
 </html>
