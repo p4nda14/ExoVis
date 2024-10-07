@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JacExo</title>
+    <style>
+
+        * {
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+             background-image: url('https://science.nasa.gov/wp-content/uploads/2023/04/c1-wfc3-jpg.webp?w=4096&format=png'); /* Change this to your image file path */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+        }
+        .categories-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        .category {
+            flex: 1;
+            margin: 0 10px;
+        }
+        .category-title {
+            padding: 10px;
+            background-color: #ccc;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .filter-bar {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        button {
+            border: none;
+            padding: 12px 24px;
+            border-radius: 15px;
+            font-weight: 600;
+            background-color: rgb(15, 155, 236);
+            color: #ffffff;
+            margin: 20 auto;
+            display: block;
+            cursor: pointer;
+        }
+        img {
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+            max-width: 200px; /* Adjust size as needed */
+        }
+        p {
+            background-image:
+        url('https://science.nasa.gov/wp-content/uploads/2023/04/c1-wfc3-jpg.webp?w=4096&format=png');
+        }
+    </style>
+</head>
+<body>
+
+<div class="categories-container">
+    <div class="category">
+        <div class="category-title">Host Star Temperature</div>
+        <div class="filter-bar">
+            <label class="filter-option">
+                <input type="checkbox" value="h"> Hot (blue star)
+            </label>
+            <label class="filter-option">
+                <input type="checkbox" value="c"> Cold (red star)
+            </label>
+            <label class="filter-option">
+                <input type="checkbox" value="s"> Sun-like (yellow star)
+            </label>
+        </div>
+    </div>
+    <div class="category">
+        <div class="category-title">Distance from the star</div>
+        <div class="filter-bar">
+            <label class="filter-option">
+                <input type="checkbox" value="c"> Closer than the habitable zone
+            </label>
+            <label class="filter-option">
+                <input type="checkbox" value="i"> Inside habitable zone
+            </label>
+            <label class="filter-option">
+                <input type="checkbox" value="f"> Farther than the habitable zone
+            </label>
+        </div>
+    </div>
+    <div class="category">
+        <div class="category-title">Planet type</div>
+        <div class="filter-bar">
+            <label class="filter-option">
+                <input type="checkbox" value="g"> Gaseous
+            </label>
+            <label class="filter-option">
+                <input type="checkbox" value="n"> Neptunian
+            </label>
+            <label class="filter-option">
+                <input type="checkbox" value="r"> Rocky
+            </label>
+        </div>
+    </div>
+    <div class="category">
+        <div class="category-title">Atmospheric Chemical Composition</div>
+        <div class="filter-bar">
+            <label class="filter-option">
+                <input type="checkbox" value="nh3"> Mainly Ammonia
+            </label>
+            <label class="filter-option">
+                <input type="checkbox" value="ch4"> Mainly Methane
+            </label>
+        </div>
+    </div>
+</div>
+
+<div>
+    <button id="btn" class="button-action">Submit</button>
+    <img id="resultImage" src="" alt="Generated Image">
+    <script>
+        document.getElementById('btn').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const selectedOptions = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+            // Prepare JSON data
+            const data = selectedOptions;
+
+            // Make a POST request to the Flask server
+            fetch('/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.blob()) // Get the response as a blob
+            .then(blob => {
+                const imgUrl = URL.createObjectURL(blob); // Create a URL for the blob
+                const imgElement = document.getElementById('resultImage');
+                imgElement.src = imgUrl; // Set the image source
+                imgElement.style.display = 'block'; // Show the image
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</div>
+
+</body>
+</html>
+
